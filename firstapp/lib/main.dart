@@ -172,7 +172,8 @@ class _MyHomePageState extends State<MyHomePage> {
               "Change Calculate",
               style: TextStyle(
                 fontFamily: "Maa",
-                fontSize: 24,
+                fontSize: 37,
+                color: const Color.fromARGB(255, 165, 25, 200),
               ),
             ),
 
