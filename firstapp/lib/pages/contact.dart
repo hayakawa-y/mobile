@@ -1,3 +1,4 @@
+import 'package:firstapp/pages/cal.dart';
 import 'package:flutter/material.dart';
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -7,28 +8,22 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+
+final items = List<String>.generate(1000, (i)=>"Item $i");
 List mydata = ['apple','banana','papaya'];
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children:[
-        ListTile(
-          leading: Icon(Icons.abc_sharp),
-          title: Text(mydata[0]),
-          subtitle: Text("subtitle"),
-          trailing: FlutterLogo(),
-        ),
-        ListTile(
-          onTap:(){},
-          leading:FlutterLogo(),
-          title: Text(mydata[1]),
-        ),
-        ListTile(
-          onTap:(){},
-          leading:FlutterLogo(),
-          title: Text(mydata[2]),
-        ),
-      ],
+     return ListView.builder(itemBuilder:  (context, index){
+     return ListTile(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute
+          (builder: (context)=>const CalculatorPage()));
+        },
+        leading: Icon(Icons.access_alarm_outlined),
+        title: Text(items[index]),
+      );
+    },
+    itemCount: mydata.length,
     );
   }
 }
