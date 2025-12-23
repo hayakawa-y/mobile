@@ -25,7 +25,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return
+    Material(
+      child: ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
         const Text(
@@ -131,7 +133,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
         const SizedBox(height: 8),
         Text('Change : ${_change.toStringAsFixed(2)} Baht',
             style: const TextStyle(fontSize: 18)),
-      ],
+        ],
+      )
     );
   }
 }
