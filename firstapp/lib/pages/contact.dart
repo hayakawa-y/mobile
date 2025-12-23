@@ -17,7 +17,7 @@ List mydata = ['apple','banana','papaya'];
      return ListTile(
         onTap: (){
           Navigator.push(context, MaterialPageRoute
-          (builder: (context)=>const CalculatorPage()));
+          (builder: (context)=>const CalculatePage()));
         },
         leading: Icon(Icons.access_alarm_outlined),
         title: Text(items[index]),

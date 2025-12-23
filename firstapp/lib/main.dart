@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:firstapp/pages/cal.dart';
-import 'package:firstapp/pages/home.dart';
 import 'package:firstapp/pages/contact.dart';
+import 'package:firstapp/pages/home.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,63 +15,62 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pattama Shop',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 218, 19, 191),
+        ),
       ),
-      home: const MainPage(),
-      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(title: 'Calculate Change'),
     );
   }
 }
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
+class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
+  final tabs = [
     HomePage(),
-    CalculatorPage(),
+    CalculatePage(),
     ContactPage(),
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Pattama Shop'),
+        title: Text(widget.title),
       ),
-      body: _pages[_selectedIndex],
+      body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        currentIndex: _currentIndex,
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
-            label: 'Calculator'
+            label: "Calculation",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.contact_page),
-            label: 'Contact',
+            label: "Contact",
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
-        onTap: _onItemTapped,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }

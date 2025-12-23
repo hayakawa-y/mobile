@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-class CalculatorPage extends StatefulWidget {
-  const CalculatorPage({super.key});
+class CalculatePage extends StatefulWidget {
+  const CalculatePage({super.key});
 
   @override
-  State<CalculatorPage> createState() => _CalculatorPageState();
+  State<CalculatePage> createState() => _CalculatorPageState();
 }
 
-class _CalculatorPageState extends State<CalculatorPage> {
+class _CalculatorPageState extends State<CalculatePage> {
 
   final TextEditingController price = TextEditingController();
   final TextEditingController amount = TextEditingController();

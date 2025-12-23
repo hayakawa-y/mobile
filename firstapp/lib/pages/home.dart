@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -7,48 +8,70 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
-
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: ListView(
         children: [
-          MyBox(),
-          SizedBox(height: 24),
-          MyBox(),
-          SizedBox(height: 24),
-          MyBox(),
+          MyBox(
+            "https://cdn.pixabay.com/photo/2015/05/15/02/07/computer-767781_1280.jpg",
+            "What is a computer?",
+            "A computer is a machine used to calculate data and perform many other tasks such as storing information and processing data.",
+          ),
+          const SizedBox(height: 24),
+
+          MyBox(
+            "https://tse3.mm.bing.net/th/id/OIP.uUYae2Owmp6KLDMgbE0npgHaEo",
+            "What is Flutter?",
+            "Flutter is a framework used to create mobile applications. It allows developers to build Android and iOS apps using a single codebase.",
+          ),
+          const SizedBox(height: 24),
+
+          MyBox(
+            "https://tse3.mm.bing.net/th/id/OIP.YISSk4gkvtyenmEXj5tVsgHaE8",
+            "What is Dart?",
+            "Dart is the programming language used in Flutter to build mobile applications.",
+          ),
         ],
       ),
     );
   }
 
-  Widget MyBox() {
+  Widget MyBox(String imageUrl, String title, String content) {
     return Container(
-      padding: EdgeInsets.all(24),
-      height: 150,
+      padding: const EdgeInsets.all(24),
+      height: 180,
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 194, 112, 232),
         borderRadius: BorderRadius.circular(24),
-        image: DecorationImage(image:   NetworkImage("https://669pic-img-server-02.oss-cn-hongkong.aliyuncs.com/element2/92ec80c600f359fc072687310e47341e.jpg_w700wb"),
-        fit: BoxFit.cover,colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.darken)
+        image: DecorationImage(
+          image: NetworkImage(imageUrl),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.6),
+            BlendMode.darken,
           ),
         ),
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("What is a computer?", style: TextStyle(fontSize: 25,
-          color: Colors.white,
-          fontWeight: FontWeight.bold)),
-          SizedBox(height: 24,),
-
           Text(
-            "A computer is a machine that can be programmed to automatically carry out sequences of arithmetic or logical operations (computation).",
-            style: TextStyle(fontSize: 15,
-            color: Colors.white),),
+            title,
+            style: const TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            content,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
     );
