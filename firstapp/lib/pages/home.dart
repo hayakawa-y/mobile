@@ -72,6 +72,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
           ),
+          SizedBox(height:20,),
+          TextButton(
+            onPressed: () {},
+            child: const Text("read more",
+            style: TextStyle(color: Colors.white)),)
         ],
       ),
     );
