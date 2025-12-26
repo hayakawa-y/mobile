@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firstapp/pages/detail.dart';
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,35 +14,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(24.0),
-      child: ListView(
-        children: [
-          MyBox(
-            "https://cdn.pixabay.com/photo/2015/05/15/02/07/computer-767781_1280.jpg",
-            "What is a computer?",
-            "A computer is a machine used to calculate data and perform many other tasks such as storing information and processing data.",
-          ),
-          const SizedBox(height: 24),
-
-          MyBox(
-            "https://tse3.mm.bing.net/th/id/OIP.uUYae2Owmp6KLDMgbE0npgHaEo",
-            "What is Flutter?",
-            "Flutter is a framework used to create mobile applications. It allows developers to build Android and iOS apps using a single codebase.",
-          ),
-          const SizedBox(height: 24),
-
-          MyBox(
-            "https://tse3.mm.bing.net/th/id/OIP.YISSk4gkvtyenmEXj5tVsgHaE8",
-            "What is Dart?",
-            "Dart is the programming language used in Flutter to build mobile applications.",
-          ),
-        ],
-      ),
+      child: FutureBuilder(
+        builder: (context, snapshot){
+          var data = json.decode(snapshot.data.toString());
+          return ListView.builder(itemBuilder: (BuildContext context, int index){
+            return MyBox(data[index]['image_url'],data[index]['title'],data[index]['subtitle']);
+          },
+          itemCount: data.length,);
+        },
+        future:DefaultAssetBundle.of(context).loadString('assets/data.json')
+      )
     );
   }
 
-  Widget MyBox(String imageUrl, String title, String content) {
+  Widget MyBox(String imageUrl, String title, String image_url) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      margin: EdgeInsets.only(top:20),
+      padding:EdgeInsets.all(20),
       height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
@@ -67,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 16),
           Text(
-            content,
+            image_url,
             style: const TextStyle(
               fontSize: 14,
               color: Colors.white,
